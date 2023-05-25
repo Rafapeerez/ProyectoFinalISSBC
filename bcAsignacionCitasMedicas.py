@@ -6,9 +6,6 @@ class Paciente:
         self.doctorAsignado = doctorAsignado
         self.estado = estado
 
-    def InstaciasPacientes(pacientes):
-        return pacientes
-
 class Doctor:
     def __init__(self, nombre, consulta, horario, estado):
         self.nombre = nombre
@@ -33,5 +30,3 @@ doctores=[
     Doctor("Dr. Caballero", "Consulta 3", [], "Sin completar"),
     Doctor("Dr. Luque", "Consulta 4", ["Lunes 20/05 9:00", "Martes 21/05 10:30, Miércoles 22/05 12:00"], "Sin completar"),
 ]
-
-
