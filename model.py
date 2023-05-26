@@ -1,44 +1,119 @@
 import bcAsignacionCitasMedicas as bcACM
 import bcAsignacionHabitacionesHotel as bcAHH
 
-def asignar(objeto, recurso):
+def asignar(objeto, recurso, cita, domain):
     objeto.estado = "Asignado"
 
-    if recurso.horario.length() == 0:
+    if domain == "Asignación de Citas Médicas":
+        if recurso.horario == []:
+            recurso.estado = "Asignado"
+
+    elif domain == "Asignación de Habitaciones de Hotel":
         recurso.estado = "Asignado"
 
-def regla1(paciente, doctor):
-    if paciente.doctorAsignado == doctor.nombre and doctor.horario.length() > 0 and paciente.estado == "Pendiente":
-        print("El paciente"+paciente.nombre+"tiene una cita  el doctor"+doctor.nombre+"en la consulta"+doctor.consulta+"el dia"+doctor.horario[0])
-        doctor.horario.pop()
-        asignar(paciente, doctor)
+    return cita
 
-def regla2(paciente, doctor):
-    if paciente.doctorAsignado != doctor.nombre and doctor.horario.length() > 0  and paciente.estado == "Pendiente":
-        print("El paciente"+paciente.nombre+"tiene una cita  el doctor"+doctor.nombre+"en la consulta"+doctor.consulta+"el dia"+doctor.horario[0])
-        doctor.horario.pop()
-        asignar(paciente, doctor)
+def regla1(objeto, recurso, domain):
+    if domain == "Asignación de Citas Médicas":
+        if objeto.doctorAsignado == recurso.nombre and recurso.horario != [] and objeto.estado == "Pendiente":
+            asignacion = "El paciente "+objeto.nombre+" tiene una cita con el "+recurso.nombre+" en la "+recurso.consulta+" el día "+recurso.horario[0]
 
-def asignacionCitasMedicas():
-    for paciente in bcACM.pacientes:
-        for doctor in bcACM.doctores:
-            regla1(paciente, doctor)
-            if paciente.doctorAsignado == doctor.nombre and doctor.estado == "Asignado":
-                for doctor in bcACM.doctores:
-                    regla2(paciente, doctor)
+            print(asignacion)
+
+            recurso.horario.remove(recurso.horario[0])
+            asignar(objeto, recurso, asignacion, domain)
+            return asignacion
+    
+    elif domain == "Asignación de Habitaciones de Hotel":
+        if objeto.habitacionAsignada == recurso.nombre and recurso.numeroCamas >= objeto.unidadFamiliar and objeto.estado == "Pendiente":
+            asignacion = "El cliente "+objeto.nombre+" tiene asignada la "+recurso.nombre+" con "+str(recurso.numeroCamas)+" camas"
+
+            print(asignacion)
+
+            asignar(objeto, recurso, asignacion, domain)
+            return asignacion
+
+def regla2(objeto, recurso, domain):
+    if domain == "Asignación de Citas Médicas":
+        if objeto.doctorAsignado != recurso.nombre and recurso.horario != []  and objeto.estado == "Pendiente":
+            asignacion = "El paciente "+objeto.nombre+" tiene una cita con el "+recurso.nombre+" en la "+recurso.consulta+" el día "+recurso.horario[0]
+
+            print(asignacion)
+
+            recurso.horario.remove(recurso.horario[0])
+
+            asignar(objeto, recurso, asignacion, domain)
+            return asignacion
+
+    elif domain == "Asignación de Habitaciones de Hotel":
+        if objeto.habitacionAsignada != recurso.nombre and recurso.numeroCamas >= objeto.unidadFamiliar and objeto.estado == "Pendiente":
+            asignacion = "El cliente "+objeto.nombre+" tiene asignada la "+recurso.nombre+" con "+str(recurso.numeroCamas)+" camas"
+
+            print(asignacion)
+
+            asignar(objeto, recurso, asignacion, domain)
+            return asignacion
+
+def asignacionObjetos(domain):
+    if domain == "Asignación de Citas Médicas":
+        for paciente in bcACM.pacientes:
+            for doctor in bcACM.doctores:
+                regla1(paciente, doctor, domain)
+                if paciente.doctorAsignado == doctor.nombre and doctor.estado == "Asignado":
+                    for doctor in bcACM.doctores:
+                        regla2(paciente, doctor, domain)
+
+    elif domain == "Asignación de Habitaciones de Hotel":
+        for cliente in bcAHH.clientes:
+            for habitacion in bcAHH.habitaciones:
+                regla1(cliente, habitacion, domain)
+                if cliente.habitacionAsignada == habitacion.nombre and habitacion.estado == "Asignado":
+                    for habitacion in bcAHH.habitaciones:
+                        regla2(cliente, habitacion, domain)
 
 #Recorre la lista de pacientes y devuelve el nombre de cada uno
 def getObjetosCitas():
+    nombres = []
     for paciente in bcACM.pacientes:
-        return paciente.nombre
+        nombres.append(paciente.nombre)
+    return nombres
+
+#Recorre la lista de pacientes y devuelve la descripcion del paciente seleccionado
+def getDescripcionObjetosCitas(nombre):
+    for paciente in bcACM.pacientes:
+        if paciente.nombre == nombre:
+            return paciente.descripcion
 
 def getRecursosCitas():
+    nombres = []
     for doctor in bcACM.doctores:
-        return doctor.nombre
+        nombres.append(doctor.nombre)
+    return nombres
+
+def getDescripcionRecursosCitas(nombre):
+    for doctor in bcACM.doctores:
+        if doctor.nombre == nombre:
+            return doctor.descripcion
 
 def getObjetosHotel():
-    return bcAHH.clientes
+    nombres = []
+    for cliente in bcAHH.clientes:
+        nombres.append(cliente.nombre)
+    return nombres
+
+def getDescripcionObjetosHotel(nombre):
+    for cliente in bcAHH.clientes:
+        if cliente.nombre == nombre:
+            return cliente.descripcion
 
 def getRecursosHotel():
-    return bcAHH.habitaciones
+    nombres = []
+    for habitacion in bcAHH.habitaciones:
+        nombres.append(habitacion.nombre)
+    return nombres  
+
+def getDescripcionRecursosHotel(nombre):
+    for habitacion in bcAHH.habitaciones:
+        if habitacion.nombre == nombre:
+            return habitacion.descripcion
 

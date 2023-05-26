@@ -1,3 +1,4 @@
+import time
 from PyQt5.QtWidgets import *
 import sys
 
@@ -67,6 +68,8 @@ class Asignador(QWidget):
         # Añadir el diseño de cuadricula de archivos al diseño vertical
         vbox.addLayout(grid)
 
+        self.assignButton.clicked.connect(lambda: self.asignar(self.comboDomain.currentText()))
+
         #Se establece el tamaño de la ventana y se muestra
         self.setLayout(vbox)
         self.setGeometry(300, 1300, 1100, 850)
@@ -80,20 +83,47 @@ class Asignador(QWidget):
         self.recursos.clear()
 
         if domain =="Asignación de Citas Médicas":
+            self.descripcionUsuarios.clear()
+            self.descripcionRecursos.clear()
             #Se recorren todos los pacientes y se añaden a la lista de objetos
-            for paciente in controller.getObjetosCitas():
-                self.objetos.addItem(paciente)
+            self.objetos.addItems(controller.getObjetosCitas())
+            #Si se selecciona un nombre, se muestra su descripción es self.descripcionUsuarios
+            self.objetos.itemClicked.connect(lambda: self.descripcionUsuarios.setText(controller.getDescripcionObjetosCitas(self.objetos.currentItem().text())))
+
             #Se recorren todos los médicos y se añaden a la lista de recursos
-            for doctor in controller.getRecursosCitas():
-                self.recursos.addItem(doctor)
+            self.recursos.addItems(controller.getRecursosCitas())
+            #Si se selecciona un nombre, se muestra su descripción es self.descripcionRecursos
+            self.recursos.itemClicked.connect(lambda: self.descripcionRecursos.setText(controller.getDescripcionRecursosCitas(self.recursos.currentItem().text())))
         
-        #elif domain == "Asignación de Habitaciones de Hotel":
-        #    #Se recorren todos los clientes y se añaden a la lista de objetos
-        #    for cliente in controller.getObjetosHabitaciones():
-        #        self.objetos.addItem(cliente)
-        #    #Se recorren todas las habitaciones y se añaden a la lista de recursos
-        #    for habitacion in controller.getRecursosHabitaciones():
-        #        self.recursos.addItem(habitacion)
+        elif domain == "Asignación de Habitaciones de Hotel":
+            self.descripcionUsuarios.clear()
+            self.descripcionRecursos.clear()
+            #Se recorren todos los clientes y se añaden a la lista de objetos
+            self.objetos.addItems(controller.getObjetosHotel())
+            #Si se selecciona un nombre, se muestra su descripción es self.descripcionUsuarios
+            self.objetos.itemClicked.connect(lambda: self.descripcionUsuarios.setText(controller.getDescripcionObjetosHotel(self.objetos.currentItem().text())))
+
+            #Se recorren todas las habitaciones y se añaden a la lista de recursos
+            self.recursos.addItems(controller.getRecursosHotel())
+            #Si se selecciona un nombre, se muestra su descripción es self.descripcionRecursos
+            self.recursos.itemClicked.connect(lambda: self.descripcionRecursos.setText(controller.getDescripcionRecursosHotel(self.recursos.currentItem().text())))
+
+    # Método que se ejecuta cuando se pulsa el botón de asignar
+    def asignar(self, domain):
+        print("Asignando...")
+
+        print("Dominio seleccionado: " + domain)
+
+        self.asignacionFinal.clear()
+        
+        #Se muestra la asignación en self.asignacionFinal
+        self.asignacionFinal.setText(controller.asignacion(domain))
+
+        #Se espera medio segundo
+        time.sleep(0.5)
+
+        print("¡Objetos y recursos asignados correctamente!")
+
 
     # Método que se despliega cuando se intenta cerrar la app
     def closeEvent(self, event):

@@ -1,21 +1,37 @@
 import model as model
 
-def asignacion():
-    asignar = model.asignacionCitasMedicas()
+def asignacion(domain):
+    asignar = model.asignacionObjetos(domain)
     return asignar
 
 def getObjetosCitas():
     objetos = model.getObjetosCitas()
     return objetos
 
+def getDescripcionObjetosCitas(nombre):
+    objetos = model.getDescripcionObjetosCitas(nombre)
+    return objetos
+
 def getRecursosCitas():
     recursos = model.getRecursosCitas()
     return recursos
 
+def getDescripcionRecursosCitas(nombre):
+    recursos = model.getDescripcionRecursosCitas(nombre)
+    return recursos
+
 def getObjetosHotel():
-    objetos = model.getObjetosCitas()
+    objetos = model.getObjetosHotel()
+    return objetos
+
+def getDescripcionObjetosHotel(nombre):
+    objetos = model.getDescripcionObjetosHotel(nombre)
     return objetos
 
 def getRecursosHotel():
     recursos = model.getRecursosHotel()
+    return recursos
+
+def getDescripcionRecursosHotel(nombre):
+    recursos = model.getDescripcionRecursosHotel(nombre)
     return recursos
