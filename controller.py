@@ -1,8 +1,8 @@
 import model as model
 
 def asignacion(domain):
-    asignar = model.asignacionObjetos(domain)
-    return asignar
+    lista = model.asignacionObjetos(domain)
+    return lista
 
 def getObjetosCitas():
     objetos = model.getObjetosCitas()

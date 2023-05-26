@@ -27,7 +27,7 @@ class Asignador(QWidget):
         self.recursos = QListWidget()
         self.descripcionUsuarios = QTextEdit()
         self.descripcionRecursos = QTextEdit()
-        self.asignacionFinal = QTextEdit()
+        self.asignacionFinalTexto = QListWidget()
 
         #Se crea un botón para asignar tareas
         self.assignButton = QPushButton("Asignar")
@@ -63,7 +63,7 @@ class Asignador(QWidget):
         #Se añade un espacio en blanco para separar la asignación de la descripción de la misma
         grid.addWidget(QLabel(""), 5, 0)
         grid.addWidget(asignacionFinal, 6, 0)
-        grid.addWidget(self.asignacionFinal, 7, 0, 1, 2)
+        grid.addWidget(self.asignacionFinalTexto, 7, 0, 1, 2)
 
         # Añadir el diseño de cuadricula de archivos al diseño vertical
         vbox.addLayout(grid)
@@ -85,6 +85,8 @@ class Asignador(QWidget):
         if domain =="Asignación de Citas Médicas":
             self.descripcionUsuarios.clear()
             self.descripcionRecursos.clear()
+            self.asignacionFinalTexto.clear()
+
             #Se recorren todos los pacientes y se añaden a la lista de objetos
             self.objetos.addItems(controller.getObjetosCitas())
             #Si se selecciona un nombre, se muestra su descripción es self.descripcionUsuarios
@@ -98,6 +100,7 @@ class Asignador(QWidget):
         elif domain == "Asignación de Habitaciones de Hotel":
             self.descripcionUsuarios.clear()
             self.descripcionRecursos.clear()
+            self.asignacionFinalTexto.clear()
             #Se recorren todos los clientes y se añaden a la lista de objetos
             self.objetos.addItems(controller.getObjetosHotel())
             #Si se selecciona un nombre, se muestra su descripción es self.descripcionUsuarios
@@ -110,20 +113,18 @@ class Asignador(QWidget):
 
     # Método que se ejecuta cuando se pulsa el botón de asignar
     def asignar(self, domain):
-        print("Asignando...")
 
-        print("Dominio seleccionado: " + domain)
+        #self.asignacionFinalTexto.setPlainText("Asignando... \nDominio Seleccionado: " + domain + "Asignaciones: " +"\n¡Objetos y recursos asignados correctamente!")
+        self.asignacionFinalTexto.clear()
+        self.asignacionFinalTexto.addItem("Asignando...")
+        self.asignacionFinalTexto.addItem("----------------------------------------------------------------------")
+        self.asignacionFinalTexto.addItem("Dominio Seleccionado: " + domain)
+        self.asignacionFinalTexto.addItem("----------------------------------------------------------------------")
 
-        self.asignacionFinal.clear()
+        self.asignacionFinalTexto.addItems(controller.asignacion(domain))
+        self.asignacionFinalTexto.addItem("----------------------------------------------------------------------")
+        self.asignacionFinalTexto.addItem("¡Objetos y recursos asignados correctamente!")
         
-        #Se muestra la asignación en self.asignacionFinal
-        self.asignacionFinal.setText(controller.asignacion(domain))
-
-        #Se espera medio segundo
-        time.sleep(0.5)
-
-        print("¡Objetos y recursos asignados correctamente!")
-
 
     # Método que se despliega cuando se intenta cerrar la app
     def closeEvent(self, event):
