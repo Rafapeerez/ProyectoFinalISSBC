@@ -102,6 +102,7 @@ class Asignador(QWidget):
             self.descripcionUsuarios.clear()
             self.descripcionRecursos.clear()
             self.asignacionFinalTexto.clear()
+            
             #Se recorren todos los clientes y se añaden a la lista de objetos
             self.objetos.addItems(controller.getObjetosHotel())
             #Si se selecciona un nombre, se muestra su descripción es self.descripcionUsuarios
@@ -114,18 +115,22 @@ class Asignador(QWidget):
 
     # Método que se ejecuta cuando se pulsa el botón de asignar
     def asignar(self, domain):
-
-        #self.asignacionFinalTexto.setPlainText("Asignando... \nDominio Seleccionado: " + domain + "Asignaciones: " +"\n¡Objetos y recursos asignados correctamente!")
+        #Se limpia la lista de asignación final
         self.asignacionFinalTexto.clear()
+
+        #Se añade un mensaje de confirmación
         self.asignacionFinalTexto.addItem("Asignando...")
         self.asignacionFinalTexto.addItem("----------------------------------------------------------------------")
+
+        #Se añade el dominio seleccionado
         self.asignacionFinalTexto.addItem("Dominio Seleccionado: " + domain)
         self.asignacionFinalTexto.addItem("----------------------------------------------------------------------")
 
+        #Se añade el resultado de la asignación
         self.asignacionFinalTexto.addItems(controller.asignacion(domain))
+
         self.asignacionFinalTexto.addItem("----------------------------------------------------------------------")
         self.asignacionFinalTexto.addItem("¡Objetos y recursos asignados correctamente!")
-        
 
     # Método que se despliega cuando se intenta cerrar la app
     def closeEvent(self, event):
