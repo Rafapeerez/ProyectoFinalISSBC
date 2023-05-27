@@ -28,6 +28,7 @@ class Asignador(QWidget):
         self.descripcionUsuarios = QTextEdit()
         self.descripcionRecursos = QTextEdit()
         self.asignacionFinalTexto = QListWidget()
+        self.asignacionFinalTexto.setMinimumHeight(235)
 
         #Se crea un botón para asignar tareas
         self.assignButton = QPushButton("Asignar")
@@ -72,7 +73,7 @@ class Asignador(QWidget):
 
         #Se establece el tamaño de la ventana y se muestra
         self.setLayout(vbox)
-        self.setGeometry(300, 1300, 1100, 850)
+        self.setGeometry(300, 1300, 1000, 800)
         self.setWindowTitle('Asignador de Tareas')
         self.show()
 

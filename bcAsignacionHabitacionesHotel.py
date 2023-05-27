@@ -19,21 +19,21 @@ class Habitacion:
 
 clientes=[
     Cliente("Rafa", 4, 957453676, "Habitación 1", "Pendiente"),
-    Cliente("Laura", 3, 957453236, "Habitación 7", "Pendiente"),
-    Cliente("Marcos", 3, 957445476, "Habitación 2", "Pendiente"),
-    Cliente("David", 2, 957458726, "Habitación 5", "Pendiente"),
-    Cliente("Alba", 5, 957452276, "Habitación 3", "Pendiente"),
+    Cliente("Laura", 3, 957453236, "Habitación 2", "Pendiente"),
+    Cliente("Marcos", 3, 957445476, "Habitación 3", "Pendiente"),
+    Cliente("David", 2, 957458726, "Habitación 4", "Pendiente"),
+    Cliente("Alba", 5, 957452276, "Habitación 5", "Pendiente"),
     Cliente("Jesus", 1, 957111676, "Habitación 6", "Pendiente"),
-    Cliente("Silvia", 1, 957453600, "Habitación 4", "Pendiente"),
+    Cliente("Silvia", 1, 957453600, "Habitación 7", "Pendiente"),
 ]
 
 habitaciones=[
     Habitacion("Habitación 1", 5, "Sin completar"),
     Habitacion("Habitación 2", 3, "Sin completar"),
     Habitacion("Habitación 3", 4, "Sin completar"),
-    Habitacion("Habitación 4", 5, "Sin completar"),
+    Habitacion("Habitación 4", 1, "Sin completar"),
     Habitacion("Habitación 5", 2, "Sin completar"),
     Habitacion("Habitación 6", 1, "Sin completar"),
     Habitacion("Habitación 7", 2, "Sin completar"),
-    Habitacion("Habitación 8", 3, "Sin completar"),
+    Habitacion("Habitación 8", 5, "Sin completar"),
 ]

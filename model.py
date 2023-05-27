@@ -1,7 +1,7 @@
 import bcAsignacionCitasMedicas as bcACM
 import bcAsignacionHabitacionesHotel as bcAHH
 
-def asignar(objeto, recurso, cita, domain):
+def asignar(objeto, recurso, asignacion, domain):
     objeto.estado = "Asignado"
 
     if domain == "Asignación de Citas Médicas":
@@ -9,9 +9,10 @@ def asignar(objeto, recurso, cita, domain):
             recurso.estado = "Asignado"
 
     elif domain == "Asignación de Habitaciones de Hotel":
+        recurso.numeroCamas = 0
         recurso.estado = "Asignado"
 
-    return cita
+    return asignacion
 
 def regla1(objeto, recurso, domain):
     if domain == "Asignación de Citas Médicas":
@@ -66,7 +67,7 @@ def asignacionObjetos(domain):
                 asig = regla1(cliente, habitacion, domain)
                 if asig != None :
                     list3.append(asig)
-                if cliente.habitacionAsignada == habitacion.nombre and habitacion.estado == "Asignado":
+                if cliente.habitacionAsignada == habitacion.nombre and habitacion.numeroCamas < cliente.unidadFamiliar:
                     for habitacion in bcAHH.habitaciones:
                         asig = regla2(cliente, habitacion, domain)
                         if asig != None :

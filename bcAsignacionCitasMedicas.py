@@ -29,8 +29,8 @@ pacientes=[
 ]
 
 doctores=[
-    Doctor("Dr. Fernandez", "Consulta 1", ["Lunes 20/05 9:00", "Martes 21/05 10:30", "Miércoles 22/05 12:00"], "Sin completar"),
-    Doctor("Dr. Reina", "Consulta 2", ["Lunes 20/05 9:00", "Martes 21/05 10:30"], "Sin completar"),
+    Doctor("Dr. Fernandez", "Consulta 1", ["Miércoles 31/05 9:00", "Jueves 01/06 10:30", "Viernes 02/06 12:50"], "Sin completar"),
+    Doctor("Dr. Reina", "Consulta 2", ["Martes 30/05 11:25", "Miércoles 31/05 9:00"], "Sin completar"),
     Doctor("Dr. Caballero", "Consulta 3", [], "Asignado"),
-    Doctor("Dr. Luque", "Consulta 4", ["Lunes 20/05 9:00", "Martes 21/05 10:30"], "Sin completar"),
+    Doctor("Dr. Luque", "Consulta 4", ["Martes 30/05 12:45", "Jueves 01/06 8:30"], "Sin completar"),
 ]
