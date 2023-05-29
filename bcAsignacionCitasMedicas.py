@@ -20,17 +20,17 @@ class Doctor:
 
 pacientes=[
     Paciente("Rafa", 76, 957453676, "Dr. Fernandez", "Pendiente"),
-    Paciente("Marcos", 34, 957445476, "Dr. Reina", "Pendiente"),
+    Paciente("Carlitos", 34, 957445476, "Dr. Pérez", "Pendiente"),
     Paciente("Alba", 69, 957452276, "Dr. Caballero", "Pendiente"),
     Paciente("Silvia", 12, 957453600, "Dr. Caballero", "Pendiente"),
     Paciente("David", 45, 957458726, "Dr. Luque", "Pendiente"),
     Paciente("Jesus", 35, 957111676, "Dr. Fernandez", "Pendiente"),
-    Paciente("Laura", 62, 957453236, "Dr. Reina", "Pendiente"),
+    Paciente("Laura", 62, 957453236, "Dr. Pérez", "Pendiente"),
 ]
 
 doctores=[
     Doctor("Dr. Fernandez", "Consulta 1", ["Miércoles 31/05 9:00", "Jueves 01/06 10:30", "Viernes 02/06 12:50"], "Sin completar"),
-    Doctor("Dr. Reina", "Consulta 2", ["Martes 30/05 11:25", "Miércoles 31/05 9:00"], "Sin completar"),
+    Doctor("Dr. Pérez", "Consulta 2", ["Martes 30/05 11:25", "Miércoles 31/05 9:00"], "Sin completar"),
     Doctor("Dr. Caballero", "Consulta 3", [], "Asignado"),
     Doctor("Dr. Luque", "Consulta 4", ["Martes 30/05 12:45", "Jueves 01/06 8:30"], "Sin completar"),
 ]

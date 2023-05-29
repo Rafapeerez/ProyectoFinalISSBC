@@ -20,7 +20,7 @@ class Habitacion:
 clientes=[
     Cliente("Rafa", 4, 957453676, "Habitación 1", "Pendiente"),
     Cliente("Laura", 3, 957453236, "Habitación 2", "Pendiente"),
-    Cliente("Marcos", 3, 957445476, "Habitación 3", "Pendiente"),
+    Cliente("Carlitos", 3, 957445476, "Habitación 3", "Pendiente"),
     Cliente("David", 2, 957458726, "Habitación 4", "Pendiente"),
     Cliente("Alba", 5, 957452276, "Habitación 5", "Pendiente"),
     Cliente("Jesus", 1, 957111676, "Habitación 6", "Pendiente"),
